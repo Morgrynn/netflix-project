@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Router from 'next/router';
 import useRequest from '../../hooks/useRequest';
+import styles from '../../styles/Login.module.scss';
+import Image from 'next/image';
 
 export default () => {
   const [email, setEmail] = useState('');
@@ -18,27 +20,36 @@ export default () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Login</h1>
-      <div className='form-group'>
-        <label>Email Address</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className='form-control'
-        />
+    <div className={styles.login}>
+      <div className={styles.top}>
+        <div className={styles.wrapper}>
+          <Image src='/logo.png' alt='logo' width='200' height='50' />
+        </div>
       </div>
-      <div className='form-group'>
-        <label>Password</label>
-        <input
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className='form-control'
-        />
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={onSubmit}>
+          <h1>Sign In</h1>
+          <input
+            value={email}
+            type='email'
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder='Enter Email'
+            className={styles.input}
+          />
+          <input
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+            placeholder='Enter Password'
+          />
+          {errors}
+          <button className={styles.loginBtn}>Login</button>
+          <span className={styles.text}>
+            New to Fitflex? <b>Sign up now.</b>
+          </span>
+        </form>
       </div>
-      {errors}
-      <button className='btn btn-primary'>Login</button>
-    </form>
+    </div>
   );
 };
