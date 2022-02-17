@@ -6,8 +6,7 @@ import { userRouter } from './routes/user';
 import { loginRouter } from './routes/login';
 import { registerRouter } from './routes/register';
 import { logoutRouter } from './routes/logout';
-import { errorHandler } from './middlewares/errorHandlers';
-import { NotFoundError } from './errors/notFoundError';
+import { errorHandler, NotFoundError } from '@morfit/common';
 
 const app = express();
 app.set('trust proxy', true);

@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validateRequest';
-import { BadRequestError } from '../errors/badRequestError';
+import { validateRequest, BadRequestError } from '@morfit/common';
 import { User } from '../models/user.model';
 import jwt from 'jsonwebtoken';
 
