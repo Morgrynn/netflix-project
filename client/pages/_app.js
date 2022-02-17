@@ -5,7 +5,7 @@ import Navbar from '../components/navbar';
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <Navbar currentUser={currentUser} />
+      {currentUser && <Navbar currentUser={currentUser} />}
       <Component {...pageProps} />
     </div>
   );
