@@ -17,7 +17,28 @@ spec:
               service:
                 name: auth-srv
                 port:
-                  number: 5000
+                  number: 3000
+          - path: /api/movies/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: movies-srv
+                port:
+                  number: 3000
+          - path: /api/lists/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: lists-srv
+                port:
+                  number: 3000
+          - path: /api/comments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: comments-srv
+                port:
+                  number: 3000
           - path: /?(.*)
             pathType: Prefix
             backend:
