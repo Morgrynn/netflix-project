@@ -1,12 +1,13 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import request from 'supertest';
-import { app } from '../app';
+import jwt from 'jsonwebtoken';
 
 declare global {
-    function register(): Promise<string[]>
+  function register(): string[];
+  function admin(): string[];
 }
 
+jest.mock('../natsClient.ts');
 jest.setTimeout(30000);
 
 let mongo: any;
@@ -19,6 +20,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
@@ -31,19 +33,38 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.register = async () => {
-  const email = 'kenobi@test.com';
-  const password = 'password';
+global.register = () => {
+  const payload = {
+    id: new mongoose.Types.ObjectId().toHexString(),
+    email: 'anakin@mail.com',
+    role: 'USER',
+  };
 
-  const resp = await request(app)
-    .post('/api/users/register')
-    .send({
-      email,
-      password,
-    })
-    .expect(201);
+  const token = jwt.sign(payload, process.env.JWT_KEY!);
 
-  const cookie = resp.get('Set-Cookie');
+  const session = { jwt: token };
 
-  return cookie;
+  const sessionJSON = JSON.stringify(session);
+
+  const base64 = Buffer.from(sessionJSON).toString('base64');
+
+  return [`session=${base64}`];
+};
+
+global.admin = () => {
+  const payload = {
+    id: new mongoose.Types.ObjectId().toHexString(),
+    email: 'anakin@mail.com',
+    role: 'ADMIN',
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_KEY!);
+
+  const session = { jwt: token };
+
+  const sessionJSON = JSON.stringify(session);
+
+  const base64 = Buffer.from(sessionJSON).toString('base64');
+
+  return [`session=${base64}`];
 };
