@@ -12,7 +12,7 @@ import { app } from '../app';
 // }
 
 declare global {
-    function register(): Promise<string[]>
+  function register(): Promise<string[]>;
 }
 
 jest.setTimeout(30000);
@@ -42,12 +42,14 @@ afterAll(async () => {
 global.register = async () => {
   const email = 'kenobi@test.com';
   const password = 'password';
+  const role = 'USER'
 
   const resp = await request(app)
     .post('/api/users/register')
     .send({
       email,
       password,
+      role
     })
     .expect(201);
 

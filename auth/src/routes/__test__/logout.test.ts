@@ -10,7 +10,7 @@ test('should clear cookie on logging out', async () => {
     })
     .expect(201);
   const resp = await request(app)
-    .post('/api/users/logout')
+    .get('/api/users/logout')
     .send({})
     .expect(200);
   expect(resp.get('Set-Cookie')[0]).toEqual(

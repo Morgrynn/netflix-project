@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import { User } from '../models/user.model';
 import { PasswordManager } from '../services/passwordManager';
 import { validateRequest, BadRequestError } from '@morfit/common';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -36,6 +36,7 @@ router.post(
       {
         id: existingUser.id,
         email: existingUser.email,
+        role: existingUser.role,
       },
       process.env.JWT_KEY!
     );
