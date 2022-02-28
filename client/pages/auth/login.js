@@ -3,6 +3,7 @@ import Router from 'next/router';
 import useRequest from '../../hooks/useRequest';
 import styles from '../../styles/Login.module.scss';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default () => {
   const [email, setEmail] = useState('');
@@ -46,7 +47,12 @@ export default () => {
           {errors}
           <button className={styles.loginBtn}>Login</button>
           <span className={styles.text}>
-            New to Fitflex? <b>Sign up now.</b>
+            New to Fitflex?{' '}
+            <b>
+              <Link href='/auth/register'>
+                <a className={styles.link}>Sign up now.</a>
+              </Link>
+            </b>
           </span>
         </form>
       </div>

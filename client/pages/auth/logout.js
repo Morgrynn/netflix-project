@@ -5,14 +5,13 @@ import useRequest from '../../hooks/useRequest';
 export default () => {
   const { doRequest } = useRequest({
     url: '/api/users/logout',
-    method: 'post',
-    body: {},
-    onSuccess: () => Router.push('/'),
+    method: 'get',
+    onSuccess: () => Router.push('/auth/login'),
   });
 
   useEffect(() => {
     doRequest();
   }, []);
   
-  return <div>Logged out... </div>;
+  return <div>Logging you out... </div>;
 };
