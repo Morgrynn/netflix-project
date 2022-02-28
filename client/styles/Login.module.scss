@@ -1,0 +1,87 @@
+@import 'colors';
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+      ),
+      url('https://jitterfitness.com/wp-content/uploads/2017/10/insanity.png');
+    background-size: cover;
+    position: relative;
+  
+    .top {
+      .wrapper {
+        padding: 20px 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+  
+        .logo {
+          height: 60px;
+        }
+      }
+    }
+  
+    .container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+  
+      .form {
+        width: 300px;
+        height: 300px;
+        padding: 30px;
+        -webkit-box-shadow: 0px 0px 3px 4px rgba(255, 250, 250, 0.26);
+        box-shadow: 0px 0px 3px 4px rgba(255, 250, 250, 0.26);
+        border-radius: 5px;
+        background-color: $black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+  
+        .input {
+          height: 40px;
+          border-radius: 5px;
+          background-color: lightgrey;
+          color: black;
+          padding-left: 10px;
+          margin-bottom: 5px;
+  
+          &::placeholder {
+            color: darkgray;
+          }
+        }
+  
+        .loginBtn {
+          height: 40px;
+          border-radius: 5px;
+          background-color: $blue;
+          color: white;
+          border: none;
+          font-size: 18px;
+          font-weight: 500;
+          cursor: pointer;
+          margin-bottom: 5px;
+        }
+  
+        .text {
+          color: lightgray;
+          font-size: medium;
+          b {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  
